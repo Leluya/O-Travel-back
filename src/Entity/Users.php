@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,22 @@ class Users
      * @ORM\Column(type="string", length=25)
      */
     private $role;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Destinations::class, mappedBy="user")
+     */
+    private $destinations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Nights::class, inversedBy="user")
+     */
+    private $night;
+
+    public function __construct()
+    {
+        $this->destinations = new ArrayCollection();
+        $this->night = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +121,57 @@ class Users
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Destinations>
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destinations $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destinations $destination): self
+    {
+        if ($this->destinations->removeElement($destination)) {
+            $destination->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Nights>
+     */
+    public function getNight(): Collection
+    {
+        return $this->night;
+    }
+
+    public function addNight(Nights $night): self
+    {
+        if (!$this->night->contains($night)) {
+            $this->night[] = $night;
+        }
+
+        return $this;
+    }
+
+    public function removeNight(Nights $night): self
+    {
+        $this->night->removeElement($night);
 
         return $this;
     }
