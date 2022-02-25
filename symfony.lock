@@ -244,6 +244,9 @@
     "symfony/runtime": {
         "version": "v5.4.3"
     },
+    "symfony/serializer": {
+        "version": "v5.4.3"
+    },
     "symfony/service-contracts": {
         "version": "v2.5.0"
     },
