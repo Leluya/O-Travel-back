@@ -34,3 +34,14 @@ After creating the database, we make the migration, we use the following command
 Now, we can create the reltion for each tables.  
 We use the command ```make:entity``` but this time we said that we want a ***relation***.  
 
+After we had created the relations, we can make an other ```bin/console make:migration``` and a ```bin/console d:m:m```.  
+We check in Mariadb and we see all the tables and relations created.  
+
+## Fixtures  
+
+Now we can procide withe the creation of the fixture to fulfil our database.  
+
+we start by installing the orm-fixtures, with the following commands:  
+```composer require --dev orm-fixtures```  
+```composer require --dev doctrine/doctrine-fixtures-bundle```  
+
