@@ -89,12 +89,24 @@ class Destinations
      */
     private $provider;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Users::class, inversedBy="destinations")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Nights::class, inversedBy="destinations")
+     */
+    private $nigth;
+
     public function __construct()
     {
         $this->landscape = new ArrayCollection();
         $this->season = new ArrayCollection();
         $this->transport = new ArrayCollection();
         $this->tag = new ArrayCollection();
+        $this->user = new ArrayCollection();
+        $this->nigth = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -314,6 +326,54 @@ class Destinations
     public function setProvider(?Providers $provider): self
     {
         $this->provider = $provider;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Users>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(Users $user): self
+    {
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Users $user): self
+    {
+        $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Nights>
+     */
+    public function getNigth(): Collection
+    {
+        return $this->nigth;
+    }
+
+    public function addNigth(Nights $nigth): self
+    {
+        if (!$this->nigth->contains($nigth)) {
+            $this->nigth[] = $nigth;
+        }
+
+        return $this;
+    }
+
+    public function removeNigth(Nights $nigth): self
+    {
+        $this->nigth->removeElement($nigth);
 
         return $this;
     }
