@@ -2,14 +2,27 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Destinations;
+use App\Entity\Landscapes;
+use App\Entity\Seasons;
+use App\Entity\Transports;
 use App\Repository\DestinationsRepository;
 use App\Repository\LandscapesRepository;
 use App\Repository\SeasonsRepository;
 use App\Repository\TransportsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
+use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
+use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class ApiController extends AbstractController
@@ -110,8 +123,9 @@ class ApiController extends AbstractController
      * @Route("/api/destinations/form", name="api_destinations_form", methods={"POST"})
      *
      */
-    public function formDestination(Request $request, DestinationsRepository $destinationsRepository, LandscapesRepository $landscapesRepository, SeasonsRepository $seasonsRepository, TransportsRepository $transportsRepository)
+    public function formDestination(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
     {
+       
 
     }
 

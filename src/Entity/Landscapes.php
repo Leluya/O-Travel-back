@@ -17,6 +17,7 @@ class Landscapes
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"list_landscape"})
      */
     private $id;
 

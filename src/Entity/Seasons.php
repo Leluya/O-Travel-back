@@ -17,6 +17,7 @@ class Seasons
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"list_season"})
      */
     private $id;
 
@@ -24,6 +25,7 @@ class Seasons
      * @ORM\Column(type="string", length=25)
      * @Groups({"show_destination"})
      * @Groups({"list_season"})
+     * @Groups({"list_destination"})
      */
     private $season;
 

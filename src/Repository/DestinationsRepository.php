@@ -19,6 +19,11 @@ class DestinationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Destinations::class);
     }
 
+    public function findDestiantionByForm()
+    {
+        
+    }
+
     // /**
     //  * @return Destinations[] Returns an array of Destinations objects
     //  */
