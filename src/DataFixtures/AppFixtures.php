@@ -166,6 +166,22 @@ class AppFixtures extends Fixture
             'Croisiére',
             'Bolivie, Paraguay, Uruguay, Argentine',
         ];
+
+        $pictures =[
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+            'https://drive.google.com/drive/folders/1ZfxV_eNcvNUlm36haOqS0NooXc0qQ2aT',
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+            'https://drive.google.com/drive/folders/1ZfxV_eNcvNUlm36haOqS0NooXc0qQ2aT',
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+            'https://drive.google.com/drive/folders/1ZfxV_eNcvNUlm36haOqS0NooXc0qQ2aT',
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+            'https://drive.google.com/drive/folders/1ZfxV_eNcvNUlm36haOqS0NooXc0qQ2aT',
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+            'https://drive.google.com/drive/folders/1ZfxV_eNcvNUlm36haOqS0NooXc0qQ2aT',
+            'https://drive.google.com/drive/folders/11t3oY6btrJiuCOmY811LCaHx90vMyeif',
+        ];
+
+
         for ($r = 0; $r < 11; $r++)
         {
             $newDestination = new Destinations();
@@ -176,7 +192,7 @@ class AppFixtures extends Fixture
             $newDestination->setSurname($surnames[$r]);
 
             // load random picure from internet
-            $newDestination->setPicture('https://picsum.photos/id/'.mt_rand(1, 100).'/303/424');
+            $newDestination->setPicture($pictures[$r]);
 
             $newDestination->setSummary('Aenean blandit, tortor ac pellentesque luctus, arcu enim aliquam augue, ac malesuada est magna a elit. Integer venenatis lacus id elit lacinia tincidunt. Cras purus leo, faucibus dictum dictum id, convallis id neque. Pellentesque consequat lorem a lacus egestas tempor. Nunc rutrum, ipsum interdum ullamcorper porta, metus velit faucibus lorem, in ullamcorper ligula odio a ipsum. In scelerisque enim eget sem vehicula, eu aliquet neque accumsan. Curabitur sit amet eros ut dui congue tristique et nec erat. Pellentesque est lorem, eleifend ac feugiat sit amet, scelerisque ut odio. Cras vel lectus ante. Sed est elit, fermentum sit amet neque a, tincidunt gravida urna. Proin hendrerit ex at lorem cursus tincidunt. Nunc ultricies rhoncus iaculis.');
 
@@ -187,7 +203,7 @@ class AppFixtures extends Fixture
             $newDestination->setCreatedAt(new DateTime("now"));
             $newDestination->setUpdatedAt(new DateTime("now"));
 
-            $newDestination->setPricePerNight(mt_rand(400, 4000));
+            $newDestination->setPricePerNight(mt_rand(50, 400));
 
             /** Add transports for each destination */
             for ($g = 1; $g <= mt_rand(1, 3); $g++) {

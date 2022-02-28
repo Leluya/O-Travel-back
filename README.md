@@ -52,3 +52,7 @@ We create a truncate function to delete all data and id when we use the command 
 We begin by create an ApiController with the command: ```bin/console make controler```  
 
 Install of Serialazer with the command: ```composer require symfony/serializer```  
+
+We install serializer pack too, with the command: ```composer require symfony/serializer-pack```  
+
+We can create now, the route for API.

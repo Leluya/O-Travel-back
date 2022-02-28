@@ -6,6 +6,7 @@ use App\Repository\TransportsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TransportsRepository::class)
@@ -21,6 +22,9 @@ class Transports
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"list_transport"})
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $way;
 

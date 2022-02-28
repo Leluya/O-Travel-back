@@ -6,6 +6,7 @@ use App\Repository\LandscapesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=LandscapesRepository::class)
@@ -21,6 +22,9 @@ class Landscapes
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Groups({"list_landscape"})
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $name;
 
