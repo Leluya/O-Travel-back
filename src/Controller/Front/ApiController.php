@@ -136,9 +136,9 @@ class ApiController extends AbstractController
             foreach($arraySelectedLandscapes as $value) {
             $landscapesArray[] = $value['id'];
             }
-        } /*else{
-            return new JsonResponse("Vous n'avez pas sélectionné de paysage!", Response::HTTP_UNPROCESSABLE_ENTITY);
-        }   */
+        } else{
+            return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins un paysage!", Response::HTTP_UNPROCESSABLE_ENTITY);
+        }   
         //dd($landscapesArray);
 
        // Tableau des id transports envoyés par le form
@@ -149,9 +149,9 @@ class ApiController extends AbstractController
             foreach($arraySelectedTransports as $value) {
                 $transportsArray[] = $value['id'];
             }
-       } /*else{
-        return new JsonResponse("Vous n'avez pas sélectionné de transport!", Response::HTTP_UNPROCESSABLE_ENTITY);
-    }*/
+       } else{
+        return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins un transport!", Response::HTTP_UNPROCESSABLE_ENTITY);
+       }
        //dd($transportsArray);
        
        // Tableau des id types de saisons envoyés par le form
@@ -162,9 +162,9 @@ class ApiController extends AbstractController
            foreach ($arraySelectedSeasons as $value) {
                $seasonsArray[] = $value['id'];
            }
-       } /*else{
-           return new JsonResponse("Vous n'avez pas sélectionné de saison!", Response::HTTP_UNPROCESSABLE_ENTITY);
-       }*/
+       } else{
+           return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins une saison!", Response::HTTP_UNPROCESSABLE_ENTITY);
+       }
        //dd($landscapesArray);
 
         // Traitement de budget
