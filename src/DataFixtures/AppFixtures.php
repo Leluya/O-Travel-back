@@ -151,6 +151,14 @@ class AppFixtures extends Fixture
             'Hawaï',
             'Antartique',
             'Amérique du Sud',
+            'République Tchéque',
+            'France',
+            'Émirats arabes unis',
+            'Brésil',
+            'Afrique du Sud',
+            'Road Trip Alpes',
+            'Etats-Unis',
+            'Mars'
         ];
          
         $surnames =[
@@ -165,10 +173,18 @@ class AppFixtures extends Fixture
             'Circuit des volcans + surf',
             'Croisiére polaire',
             'Bolivie, Paraguay, Uruguay, Argentine',
+            'Prague',
+            'Corse',
+            'Dubaï',
+            'Rio de janeiro',
+            'Cape Town',
+            'Suisse, Italie, Croatie',
+            'Orlando',
+            'Featuring space-X'
         ];
 
         $pictures =[
-            'https://cdn.pixabay.com/photo/2019/07/21/07/12/new-york-4352072_960_720.jpg',
+            '(https://cdn.pixabay.com/photo/2019/07/21/07/12/new-york-4352072_960_720.jpg) (https://cdn.pixabay.com/photo/2020/06/08/20/58/nyc-5276112_960_720.jpg)',
             'https://cdn.pixabay.com/photo/2019/10/28/23/22/vancouver-4585887_960_720.jpg',
             'https://cdn.pixabay.com/photo/2017/04/24/17/25/frontenac-2257154_960_720.jpg',
             'https://cdn.pixabay.com/photo/2019/10/06/08/57/architecture-4529605_960_720.jpg',
@@ -179,10 +195,18 @@ class AppFixtures extends Fixture
             'https://cdn.pixabay.com/photo/2017/02/05/00/05/hawaii-2038861_960_720.jpg',
             'https://cdn.pixabay.com/photo/2016/03/31/21/17/landscape-1296307_960_720.jpg',
             'https://cdn.pixabay.com/photo/2020/05/15/14/21/andes-5173790_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/12/10/17/40/prague-3010407_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/08/20/22/16/coast-3620146_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/02/02/07/55/dubai-256585_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/01/08/19/30/rio-de-janeiro-1963744_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/02/24/03/06/helicopter-1218974_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/11/01/18/46/dubrovnik-512798_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/12/22/15/40/castle-3889852_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2011/12/13/14/30/mars-11012_960_720.jpg'
         ];
 
 
-        for ($r = 0; $r < 11; $r++)
+        for ($r = 0; $r < 19; $r++)
         {
             $newDestination = new Destinations();
          
