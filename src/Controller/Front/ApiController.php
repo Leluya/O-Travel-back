@@ -15,9 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
-use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
-use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -101,9 +98,9 @@ class ApiController extends AbstractController
 
     }
 
-       /**
-     * @Route("/api/seasons", name="api_seasons", methods={"GET"})
-     */
+    /**
+    * @Route("/api/seasons", name="api_seasons", methods={"GET"})
+    */
     public function listSeasons(SeasonsRepository $seasonsRepository): Response
     {
 
@@ -119,14 +116,67 @@ class ApiController extends AbstractController
         );
 
     }
+    
     /**
-     * @Route("/api/destinations/form", name="api_destinations_form", methods={"POST"})
-     *
-     */
-    public function formDestination(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
+    * @Route("/api/destinations/form", name="api", methods={"POST"})
+    */
+    public function listDestinationsForm(Request $request, DestinationsRepository $destinationsRepository): Response
     {
-       
+       $jsonRecu = $request->getContent();
+       // dd($jsonRecu);
 
+       $data = json_decode($jsonRecu, true);
+       // dd($data);
+
+        // Tableau des id types de paysages envoyés par le form
+        $landscapesArray=[];
+        if (array_key_exists('selectedLandscapes', $data)) {
+            $arraySelectedLandscapes = $data['selectedLandscapes'];
+            
+            foreach($arraySelectedLandscapes as $value) {
+            $landscapesArray[] = $value['id'];
+            }
+        } /*else{
+            return new JsonResponse("Vous n'avez pas sélectionné de paysage!", Response::HTTP_UNPROCESSABLE_ENTITY);
+        }   */
+        //dd($landscapesArray);
+
+       // Tableau des id transports envoyés par le form
+       $transportsArray=[];
+       if (array_key_exists('selectedTransports', $data)) {
+            $arraySelectedTransports = $data['selectedTransports'];
+            
+            foreach($arraySelectedTransports as $value) {
+                $transportsArray[] = $value['id'];
+            }
+       } /*else{
+        return new JsonResponse("Vous n'avez pas sélectionné de transport!", Response::HTTP_UNPROCESSABLE_ENTITY);
+    }*/
+       //dd($transportsArray);
+       
+       // Tableau des id types de saisons envoyés par le form
+       $seasonsArray=[];
+       if (array_key_exists('selectedSeasons', $data)) {
+           $arraySelectedSeasons = $data['selectedSeasons'];
+        
+           foreach ($arraySelectedSeasons as $value) {
+               $seasonsArray[] = $value['id'];
+           }
+       } /*else{
+           return new JsonResponse("Vous n'avez pas sélectionné de saison!", Response::HTTP_UNPROCESSABLE_ENTITY);
+       }*/
+       //dd($landscapesArray);
+
+        // Traitement de budget
+        $budget = $data['budget'];
+        // dd($budget);
+
+        return $this->json(
+            $destinationsRepository->findAllFiltered($transportsArray, $landscapesArray, $seasonsArray, $budget),
+            200,
+            [],
+            ['groups' => 'list_destinations']
+        );
     }
 
 }

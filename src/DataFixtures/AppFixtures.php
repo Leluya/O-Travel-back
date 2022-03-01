@@ -203,7 +203,7 @@ class AppFixtures extends Fixture
             $newDestination->setCreatedAt(new DateTime("now"));
             $newDestination->setUpdatedAt(new DateTime("now"));
 
-            $newDestination->setPricePerNight(mt_rand(50, 400));
+            $newDestination->setPricePerNight(mt_rand(200, 3000));
 
             /** Add transports for each destination */
             for ($g = 1; $g <= mt_rand(1, 3); $g++) {

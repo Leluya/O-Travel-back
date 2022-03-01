@@ -55,4 +55,10 @@ Install of Serialazer with the command: ```composer require symfony/serializer``
 
 We install serializer pack too, with the command: ```composer require symfony/serializer-pack```  
 
-We can create now, the route for API.
+We can create now, the route for API.  
+
+## NelmioCorsBundle installation  
+
+We instal the NelmioCorsBundle to make the communication between the Front and the api in Back.  
+First, we use the command: ```composer require nelmio/cors-bundle```  
+Second, we check and adapt the file ```config/packages/nelmio_cors.yaml```, now we the Front can communicate with the Back.  
