@@ -141,32 +141,72 @@ class AppFixtures extends Fixture
         $allDestinations = [];
         $states = [
             'Etats-Unis',
+            'Ouest Canadien',
             'Canada',
-            'Suisse',
             'Italie',
-            'Croatie',
+            'Japon',
             'Norvège',
-            'Suède',
+            'Pays nordique',
             'Australie',
             'Hawaï',
             'Antartique',
             'Amérique du Sud',
+            'République Tchéque',
+            'France',
+            'Émirats arabes unis',
+            'Brésil',
+            'Afrique du Sud',
+            'Road Trip Alpes',
+            'Etats-Unis',
+            'Mars'
         ];
          
         $surnames =[
             'New York',
             'Vancouver',
-            'Glacier Express',
+            'Région de Québec',
             'Rome',
-            'Croisiére',
+            'Tokyo',
             'fjords',
             'Circuit Norvège, Suède',
-            'Melbourne',
-            'Circuit des volcans',
-            'Croisiére',
+            'Côte Est',
+            'Circuit des volcans + surf',
+            'Croisiére polaire',
             'Bolivie, Paraguay, Uruguay, Argentine',
+            'Prague',
+            'Corse',
+            'Dubaï',
+            'Rio de janeiro',
+            'Cape Town',
+            'Suisse, Italie, Croatie',
+            'Orlando',
+            'Featuring Space-X'
         ];
-        for ($r = 0; $r < 11; $r++)
+
+        $pictures =[
+            'https://cdn.pixabay.com/photo/2019/07/21/07/12/new-york-4352072_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/10/28/23/22/vancouver-4585887_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/04/24/17/25/frontenac-2257154_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/10/06/08/57/architecture-4529605_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/07/14/16/02/manga-5404746_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/02/07/16/20/lofoten-4827611_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2022/01/02/19/43/port-6910972_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/05/26/09/58/sydney-opera-house-354375_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/02/05/00/05/hawaii-2038861_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/03/31/21/17/landscape-1296307_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/05/15/14/21/andes-5173790_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/12/10/17/40/prague-3010407_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/08/20/22/16/coast-3620146_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/02/02/07/55/dubai-256585_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/01/08/19/30/rio-de-janeiro-1963744_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/02/24/03/06/helicopter-1218974_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/11/01/18/46/dubrovnik-512798_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/12/22/15/40/castle-3889852_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2011/12/13/14/30/mars-11012_960_720.jpg'
+        ];
+
+
+        for ($r = 0; $r < 19; $r++)
         {
             $newDestination = new Destinations();
          
@@ -176,7 +216,7 @@ class AppFixtures extends Fixture
             $newDestination->setSurname($surnames[$r]);
 
             // load random picure from internet
-            $newDestination->setPicture('https://picsum.photos/id/'.mt_rand(1, 100).'/303/424');
+            $newDestination->setPicture($pictures[$r]);
 
             $newDestination->setSummary('Aenean blandit, tortor ac pellentesque luctus, arcu enim aliquam augue, ac malesuada est magna a elit. Integer venenatis lacus id elit lacinia tincidunt. Cras purus leo, faucibus dictum dictum id, convallis id neque. Pellentesque consequat lorem a lacus egestas tempor. Nunc rutrum, ipsum interdum ullamcorper porta, metus velit faucibus lorem, in ullamcorper ligula odio a ipsum. In scelerisque enim eget sem vehicula, eu aliquet neque accumsan. Curabitur sit amet eros ut dui congue tristique et nec erat. Pellentesque est lorem, eleifend ac feugiat sit amet, scelerisque ut odio. Cras vel lectus ante. Sed est elit, fermentum sit amet neque a, tincidunt gravida urna. Proin hendrerit ex at lorem cursus tincidunt. Nunc ultricies rhoncus iaculis.');
 
@@ -187,7 +227,7 @@ class AppFixtures extends Fixture
             $newDestination->setCreatedAt(new DateTime("now"));
             $newDestination->setUpdatedAt(new DateTime("now"));
 
-            $newDestination->setPricePerNight(mt_rand(400, 4000));
+            $newDestination->setPricePerNight(mt_rand(200, 3000));
 
             /** Add transports for each destination */
             for ($g = 1; $g <= mt_rand(1, 3); $g++) {

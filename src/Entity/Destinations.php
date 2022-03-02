@@ -6,6 +6,7 @@ use App\Repository\DestinationsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=DestinationsRepository::class)
@@ -16,36 +17,49 @@ class Destinations
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $state;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $surname;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $summary;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"show_destination"})
      */
     private $extract;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $pros;
 
@@ -61,21 +75,28 @@ class Destinations
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $price_per_night;
 
     /**
      * @ORM\ManyToMany(targetEntity=Landscapes::class, inversedBy="destinations")
+     * @Groups({"list_destination"})
      */
     private $landscape;
 
     /**
      * @ORM\ManyToMany(targetEntity=Seasons::class, inversedBy="destinations")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $season;
 
     /**
      * @ORM\ManyToMany(targetEntity=Transports::class, inversedBy="destinations")
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $transport;
 
