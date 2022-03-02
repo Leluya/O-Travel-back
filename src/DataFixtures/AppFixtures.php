@@ -180,11 +180,11 @@ class AppFixtures extends Fixture
             'Cape Town',
             'Suisse, Italie, Croatie',
             'Orlando',
-            'Featuring space-X'
+            'Featuring Space-X'
         ];
 
         $pictures =[
-            '(https://cdn.pixabay.com/photo/2019/07/21/07/12/new-york-4352072_960_720.jpg) (https://cdn.pixabay.com/photo/2020/06/08/20/58/nyc-5276112_960_720.jpg)',
+            'https://cdn.pixabay.com/photo/2019/07/21/07/12/new-york-4352072_960_720.jpg',
             'https://cdn.pixabay.com/photo/2019/10/28/23/22/vancouver-4585887_960_720.jpg',
             'https://cdn.pixabay.com/photo/2017/04/24/17/25/frontenac-2257154_960_720.jpg',
             'https://cdn.pixabay.com/photo/2019/10/06/08/57/architecture-4529605_960_720.jpg',
