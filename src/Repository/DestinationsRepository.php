@@ -140,10 +140,15 @@ class DestinationsRepository extends ServiceEntityRepository
         if ((strlen($conditionTransport) > 0) && (strlen($conditionLandscape) > 0) && (strlen($conditionSeason) > 0))  {
             $sql = $sql .' WHERE  transports_id in ' . $conditionTransport .  ' and  landscapes_id in ' . $conditionLandscape . 
             ' and seasons_id in ' . $conditionSeason . ' and destinations.price_per_night <=' . $budget;
-        }
+        } elseif (strlen($conditionTransport) > 0){
+            $sql = $sql .' WHERE  transports_id in ' . $conditionTransport . ' and destinations.price_per_night <=' . $budget;
+        } elseif (strlen($conditionLandscape) > 0){
+            $sql = $sql .' WHERE  landscapes_id in ' . $conditionLandscape . ' and destinations.price_per_night <=' . $budget;
+        } elseif (strlen($conditionSeason) > 0){
+            $sql = $sql .' WHERE  seasons_id in ' . $conditionSeason . ' and destinations.price_per_night <=' . $budget;
+        } 
           
         
-
         // Trié par prix par nuit croissant
         $sql = $sql . ' ORDER BY destinations.price_per_night ASC';
        // dd($sql);

@@ -204,6 +204,90 @@ class AppFixtures extends Fixture
             'https://cdn.pixabay.com/photo/2018/12/22/15/40/castle-3889852_960_720.jpg',
             'https://cdn.pixabay.com/photo/2011/12/13/14/30/mars-11012_960_720.jpg'
         ];
+        $pictures2 =[
+            'https://cdn.pixabay.com/photo/2020/06/08/20/58/nyc-5276112_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2012/06/21/02/01/totem-pole-50437_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/03/10/06/46/city-2131934_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/12/15/19/13/rome-3021586_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2013/11/25/09/52/japan-217882_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/02/22/12/26/water-4013446_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/11/30/13/33/northern-lights-3847784_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/07/02/04/45/heart-1492445_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/04/20/04/46/waikiki-2244523_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2021/03/11/08/18/penguins-6086503_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/07/26/21/30/bolivia-2543157_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/09/04/19/02/building-922531_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/10/05/22/47/corsican-3727038_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2021/09/26/11/54/architecture-6657475_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/01/31/21/25/brazil-4809011_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/05/12/00/22/muizenberg-2305734_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/05/10/19/27/passage-5155252_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/03/12/00/12/florida-4923565_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2012/11/28/09/08/moon-vehicle-67521_960_720.jpg'
+        ];
+        $pictures3 =[
+            'https://cdn.pixabay.com/photo/2016/12/16/23/49/new-york-1912582_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/09/08/09/25/kayaks-2728181_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/12/01/21/57/sunset-1072942_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/05/09/22/44/the-altar-of-the-fatherland-760337_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/01/31/07/26/chef-4807317_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/02/07/16/15/fjord-3981546_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/09/05/07/23/village-4453338_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2013/12/10/00/23/koala-226279_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/06/02/05/40/hawaii-1430283_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/07/30/02/00/iceberg-404966_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2013/09/21/21/31/swamp-184745_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/07/09/21/46/prague-1506918_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/02/28/18/51/waters-3188752_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/03/09/21/30/downtown-4045035_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2020/01/29/18/48/brazil-4803291_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/02/24/05/16/art-1219118_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/03/31/14/31/italy-4093227_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/01/10/13/06/universal-studios-241596_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2012/11/28/09/08/mars-67522_960_720.jpg'
+        ];
+        $pictures4 =[
+            'https://cdn.pixabay.com/photo/2018/05/24/02/07/new-york-3425660_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/07/14/21/19/canada-4338117_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/12/14/10/21/canada-1092352_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/01/03/02/31/italy-1948362_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/07/23/22/19/tokyo-4358758_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/09/02/19/26/norway-2708286_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2014/06/26/15/08/royal-palace-377913_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/11/04/21/34/beach-1799006_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/06/07/00/58/hawaii-1440739_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/03/29/18/39/iceberg-4089866_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/04/06/16/58/fishermen-2208810_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/05/30/01/42/prague-2355458_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/09/29/23/44/corsican-3712554_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/02/21/07/55/uae-4010835_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/12/09/12/26/rio-carnival-1084654_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/10/20/09/59/south-africa-997547_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2021/03/30/02/40/croatie-6135694_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/08/01/13/16/orlando-3577181_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/08/28/16/22/space-shuttle-2690279_960_720.jpg'
+        ];
+        $pictures5 =[
+            'https://cdn.pixabay.com/photo/2015/03/11/12/31/buildings-668616_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/09/08/09/28/ocean-2728188_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2021/11/25/21/28/frozen-lake-6824631_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2018/05/13/23/49/trevi-3398398_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/12/03/05/57/sensoji-4669289_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/02/12/20/43/fjord-3993190_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/07/20/18/36/sweden-853150_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/01/01/22/54/sylvester-586224_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/11/09/02/17/hawaii-1034551_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/11/13/00/04/whale-4622268_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2012/07/06/17/11/caminito-51625_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/11/21/14/02/prague-1845560_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/07/29/10/31/windmill-gard-2551072_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/08/10/16/11/burj-al-arab-2624317_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/08/25/20/42/sunset-4430276_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/07/30/06/27/africa-4372120_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2016/09/19/22/46/lake-1681485_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2017/07/13/19/00/macaw-2501439_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2019/02/18/12/16/astronaut-4004417_960_720.jpg'
+        ];
 
 
         for ($r = 0; $r < 19; $r++)
@@ -217,6 +301,10 @@ class AppFixtures extends Fixture
 
             // load random picure from internet
             $newDestination->setPicture($pictures[$r]);
+            $newDestination->setPicture2($pictures2[$r]);
+            $newDestination->setPicture3($pictures3[$r]);
+            $newDestination->setPicture4($pictures4[$r]);
+            $newDestination->setPicture5($pictures5[$r]);
 
             $newDestination->setSummary('Aenean blandit, tortor ac pellentesque luctus, arcu enim aliquam augue, ac malesuada est magna a elit. Integer venenatis lacus id elit lacinia tincidunt. Cras purus leo, faucibus dictum dictum id, convallis id neque. Pellentesque consequat lorem a lacus egestas tempor. Nunc rutrum, ipsum interdum ullamcorper porta, metus velit faucibus lorem, in ullamcorper ligula odio a ipsum. In scelerisque enim eget sem vehicula, eu aliquet neque accumsan. Curabitur sit amet eros ut dui congue tristique et nec erat. Pellentesque est lorem, eleifend ac feugiat sit amet, scelerisque ut odio. Cras vel lectus ante. Sed est elit, fermentum sit amet neque a, tincidunt gravida urna. Proin hendrerit ex at lorem cursus tincidunt. Nunc ultricies rhoncus iaculis.');
 
