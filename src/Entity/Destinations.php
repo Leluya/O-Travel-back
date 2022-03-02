@@ -122,21 +122,29 @@ class Destinations
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $picture2;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $picture3;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $picture4;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list_destination"})
+     * @Groups({"show_destination"})
      */
     private $picture5;
 
