@@ -34,10 +34,16 @@ class Nights
      */
     private $destinations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="night")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->destinations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,5 +115,13 @@ class Nights
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 }

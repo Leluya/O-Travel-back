@@ -10,6 +10,7 @@ use App\Repository\DestinationsRepository;
 use App\Repository\LandscapesRepository;
 use App\Repository\SeasonsRepository;
 use App\Repository\TransportsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -179,4 +180,22 @@ class ApiController extends AbstractController
         );
     }
 
+        /**
+    * @Route("/api/user/{id}", name="api_user", methods={"GET"})
+    */
+    public function showUser(UserRepository $userRepository, $id): Response
+    {
+
+        // We send a a JsonResponse
+        return $this->json(
+            $userRepository->find($id),
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_user']]
+        );
+
+    }
 }

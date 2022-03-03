@@ -148,6 +148,11 @@ class Destinations
      */
     private $picture5;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="destination")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->landscape = new ArrayCollection();
@@ -156,6 +161,7 @@ class Destinations
         $this->tag = new ArrayCollection();
         $this->user = new ArrayCollection();
         $this->nigth = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -473,5 +479,13 @@ class Destinations
         $this->picture5 = $picture5;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 }

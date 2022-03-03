@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -16,34 +19,56 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"show_user"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"show_user"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({"show_user"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"show_user"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"show_user"})
      */
     private $lastname;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Destinations::class, inversedBy="users")
+     */
+    private $destination;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Nights::class, inversedBy="users")
+     */
+    private $night;
+
+    public function __construct()
+    {
+        $this->destination = new ArrayCollection();
+        $this->night = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +179,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Destinations>
+     */
+    public function getDestination(): Collection
+    {
+        return $this->destination;
+    }
+
+    public function addDestination(Destinations $destination): self
+    {
+        if (!$this->destination->contains($destination)) {
+            $this->destination[] = $destination;
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destinations $destination): self
+    {
+        $this->destination->removeElement($destination);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Nights>
+     */
+    public function getNight(): Collection
+    {
+        return $this->night;
+    }
+
+    public function addNight(Nights $night): self
+    {
+        if (!$this->night->contains($night)) {
+            $this->night[] = $night;
+        }
+
+        return $this;
+    }
+
+    public function removeNight(Nights $night): self
+    {
+        $this->night->removeElement($night);
 
         return $this;
     }
