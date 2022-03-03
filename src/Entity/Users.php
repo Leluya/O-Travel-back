@@ -35,7 +35,8 @@ class Users
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string The hashed password
+     * @ORM\Column(type="string", length=250)
      */
     private $password;
 
