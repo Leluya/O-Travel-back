@@ -10,6 +10,7 @@ use App\Repository\DestinationsRepository;
 use App\Repository\LandscapesRepository;
 use App\Repository\SeasonsRepository;
 use App\Repository\TransportsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -136,9 +137,9 @@ class ApiController extends AbstractController
             foreach($arraySelectedLandscapes as $value) {
             $landscapesArray[] = $value['id'];
             }
-        } else{
+        } /* else{
             return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins un paysage!", Response::HTTP_UNPROCESSABLE_ENTITY);
-        }   
+        } */  
         //dd($landscapesArray);
 
        // Tableau des id transports envoyés par le form
@@ -149,9 +150,9 @@ class ApiController extends AbstractController
             foreach($arraySelectedTransports as $value) {
                 $transportsArray[] = $value['id'];
             }
-       } else{
+       } /* else{
         return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins un transport!", Response::HTTP_UNPROCESSABLE_ENTITY);
-       }
+       } */
        //dd($transportsArray);
        
        // Tableau des id types de saisons envoyés par le form
@@ -162,9 +163,9 @@ class ApiController extends AbstractController
            foreach ($arraySelectedSeasons as $value) {
                $seasonsArray[] = $value['id'];
            }
-       } else{
+       } /* else{
            return new JsonResponse("Si tu veux vraiment partir, sélectionne au moins une saison!", Response::HTTP_UNPROCESSABLE_ENTITY);
-       }
+       } */
        //dd($landscapesArray);
 
         // Traitement de budget
@@ -179,4 +180,22 @@ class ApiController extends AbstractController
         );
     }
 
+        /**
+    * @Route("/api/user/{id}", name="api_user", methods={"GET"})
+    */
+    public function showUser(UserRepository $userRepository, $id): Response
+    {
+
+        // We send a a JsonResponse
+        return $this->json(
+            $userRepository->find($id),
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_user']]
+        );
+
+    }
 }

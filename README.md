@@ -62,3 +62,20 @@ We can create now, the route for API.
 We instal the NelmioCorsBundle to make the communication between the Front and the api in Back.  
 First, we use the command: ```composer require nelmio/cors-bundle```  
 Second, we check and adapt the file ```config/packages/nelmio_cors.yaml```, now we the Front can communicate with the Back.  
+
+## Easyadmin installation  
+
+We start by instal the bundle Easyadmin, we use the following command:  
+```composer require easycorp/easyadmin-bundle```  
+
+We create now the CRUD for the Users, we use the follwong command:  
+```bin/console mak:crud``` but it's not working because we don't have install annotations, so we install it with ```composer require validator annotations```.   
+
+We create the UsersController and the destinationsController.  
+
+We create now the dashboards witht the command: ```bin/console make:admin:dashboard```.   
+
+We create a personal 'home page' for the Back.  
+We want to add the destinatiosn list and users, for thaht we use the follwing command ```bin/console make:admin:crud``` to create **DestinationsCrudController** and **UsersCrudController**. Now we can add icons to link the list of users and destination in the **DashboardController**.   
+
+We need to install the package security with the command: ```composer require security```.  
