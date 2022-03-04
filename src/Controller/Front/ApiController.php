@@ -117,7 +117,7 @@ class ApiController extends AbstractController
     }
     
     /**
-    * @Route("/api/destinations/form", name="api", methods={"POST"})
+    * @Route("/api/destinations/form", name="api_destinations_form", methods={"POST"})
     */
     public function listDestinationsForm(Request $request, DestinationsRepository $destinationsRepository): Response
     {
@@ -198,7 +198,7 @@ class ApiController extends AbstractController
     }
 
     /**
-    * @Route("/api/user/form", name="api", methods={"POST"})
+    * @Route("/api/user/form", name="api_user_form", methods={"POST"})
     */
     public function createUser(EntityManagerInterface $entityManager, Request $request, SerializerInterface $serializerInterface,ValidatorInterface $validator): Response
     {
@@ -231,7 +231,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     *@Route("/api/user/login", name="api_login", methods={"POST"})
+     *@Route("/api/user/login", name="api_user_login", methods={"POST"})
      */
     public function loginUser(Request $request, SerializerInterface $serializerInterface, UserRepository $userRepository)
     {
