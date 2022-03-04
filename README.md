@@ -79,3 +79,59 @@ We create a personal 'home page' for the Back.
 We want to add the destinatiosn list and users, for thaht we use the follwing command ```bin/console make:admin:crud``` to create **DestinationsCrudController** and **UsersCrudController**. Now we can add icons to link the list of users and destination in the **DashboardController**.   
 
 We need to install the package security with the command: ```composer require security```.  
+
+## Connextion and security  
+
+**Connection for the website**
+
+We start by using the command : ```composer require security```.  
+
+Now we can continue with the creation of th user controller, so we use:```bin/console make:user```.  
+After that, we can proceed to a migration.  
+
+We will on authentication with the command: ```bin/console make:auth```.  
+
+We complete the creation:
+
+```bash
+bin/console make:auth
+
+ What style of authentication do you want? [Empty authenticator]:
+  [0] Empty authenticator
+  [1] Login form authenticator
+ > 1
+
+ The class name of the authenticator to create (e.g. AppCustomAuthenticator):
+ > LoginForm
+
+ Choose a name for the controller class (e.g. SecurityController) [SecurityController]:
+ > 
+
+ Do you want to generate a '/logout' URL? (yes/no) [yes]:
+ > 
+
+ created: src/Security/LoginFormAuthenticator.php
+ updated: config/packages/security.yaml
+ created: src/Controller/SecurityController.php
+ created: templates/security/login.html.twig
+
+           
+  Success! 
+           
+
+ Next:
+ - Customize your new authenticator.
+ - Finish the redirect "TODO" in the App\Security\LoginFormAuthenticator::onAuthenticationSuccess() method.
+ - Check the user's password in App\Security\LoginFormAuthenticator::checkCredentials().
+ - Review & adapt the login template: templates/security/login.html.twig.
+```
+
+We create a user in our databe, but before to save the suer, we use the command: ``` bin/console security:has-password``` to have the password hased. Now, we cans save the user.  
+
+**API securisation**
+
+We can start to use JWT Lexit to secure our API.
+We install the bundle **Lexit** with the command: ```composer require lexik/jwt-authentication-bundle```.  
+
+
+

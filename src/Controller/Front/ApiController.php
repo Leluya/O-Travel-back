@@ -231,7 +231,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     *@Route("/api/user/login", name="api", methods={"POST"})
+     *@Route("/api/user/login", name="api_login", methods={"POST"})
      */
     public function loginUser(Request $request, SerializerInterface $serializerInterface, UserRepository $userRepository)
     {
@@ -251,7 +251,7 @@ class ApiController extends AbstractController
                 $user,
                 200,
                 [],
-                ['groups' => ['show_user']]
+                ['groups' => ['show_username']]
             );
         }
         

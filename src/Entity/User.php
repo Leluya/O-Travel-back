@@ -45,12 +45,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Groups({"show_user"})
+     * @Groups({"show_username"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Groups({"show_user"})
+     * @Groups({"show_username"})
      */
     private $lastname;
 
