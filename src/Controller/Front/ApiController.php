@@ -2,10 +2,8 @@
 
 namespace App\Controller\Front;
 
-use App\Entity\Destinations;
-use App\Entity\Landscapes;
-use App\Entity\Seasons;
-use App\Entity\Transports;
+use App\Entity\User;
+use App\Entity\Users;
 use App\Repository\DestinationsRepository;
 use App\Repository\LandscapesRepository;
 use App\Repository\SeasonsRepository;
@@ -17,10 +15,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Models\JsonError;
+use Exception;
 
 
 class ApiController extends AbstractController
@@ -180,7 +178,7 @@ class ApiController extends AbstractController
         );
     }
 
-        /**
+    /**
     * @Route("/api/user/{id}", name="api_user", methods={"GET"})
     */
     public function showUser(UserRepository $userRepository, $id): Response
@@ -198,4 +196,68 @@ class ApiController extends AbstractController
         );
 
     }
+
+    /**
+    * @Route("/api/user/form", name="api", methods={"POST"})
+    */
+    public function createUser(EntityManagerInterface $entityManager, Request $request, SerializerInterface $serializerInterface,ValidatorInterface $validator): Response
+    {
+         $data = $request->getContent();
+         try {
+            $newUser = $serializerInterface->deserialize($data, Users::class, 'json');
+         } catch (Exception $e) {
+             return new JsonResponse("Un ou plusieurs champ(s) manquant!", Response::HTTP_UNPROCESSABLE_ENTITY);
+         }
+         
+        $errors = $validator->validate($newUser);
+        if (count($errors) > 0) {
+            //dd($errors);
+            $myJsonError = new JsonError(Response::HTTP_UNPROCESSABLE_ENTITY, "Des erreurs de validation ont été trouvées");
+            $myJsonError->setValidationErrors($errors);
+    
+            return $this->json($myJsonError, $myJsonError->getError());
+        }
+
+         $entityManager->persist($newUser);
+         $entityManager->flush();
+
+         return $this->json(
+             $newUser,
+             Response::HTTP_CREATED,
+             [], 
+             ['groups' => ['show_user']]
+         );
+
+    }
+
+    /**
+     *@Route("/api/user/login", name="api", methods={"POST"})
+     */
+    public function loginUser(Request $request, SerializerInterface $serializerInterface, UserRepository $userRepository)
+    {
+        $data = $request->getContent();
+
+        $userPost = $serializerInterface->deserialize($data, User::class, 'json');
+        // dd($user);
+       
+        $user = $userRepository->findByEmail( $userPost->getEmail());
+        // dd($userPost->getPassword());
+
+        //$password = $userRepository->findByPassword( $userPost->getPassword());
+        // dd($password);
+        //if ($user !== NULL && $password !== NULL){ 
+         if ((count($user) > 0) && (password_verify($userPost->getPassword(), $user[0]->getPassword()))){
+            return $this->json(
+                $user,
+                200,
+                [],
+                ['groups' => ['show_user']]
+            );
+        }
+        
+        return new JsonResponse("email et/ou mot de passe incorrect", 401);
+
+    }
+
+
 }
