@@ -167,3 +167,12 @@ It's the route to have the token to be connect to the API.
 
 We add the following script for the file lexit_jwt_authentication.yaml:
 ```token_ttl: 36000 # in seconds, default is 3600```, we add time to use the api session with the token.  
+
+
+## Reset paswword
+
+We use the following command:  
+```composer require symfonycasts/reset-password-bundle symfony/mailer```  
+
+We can create the return after succesful reset password and give the eamil thaht send the request with the following command:  
+```bin/console make:reset-password```  

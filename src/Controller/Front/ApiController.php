@@ -3,7 +3,6 @@
 namespace App\Controller\Front;
 
 use App\Entity\User;
-use App\Entity\Users;
 use App\Repository\DestinationsRepository;
 use App\Repository\LandscapesRepository;
 use App\Repository\SeasonsRepository;
@@ -19,16 +18,22 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Models\JsonError;
 use Exception;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use App\EvenListener\AuthenticationSuccessListener;
 
 
 class ApiController extends AbstractController
 {
+   
     /**
      * @Route("/api/transports", name="api_list_transports", methods={"GET"})
      */
     public function listTransports(TransportsRepository $transportsRepository): Response
     {
-        // We send a a JsonResponse
+      
         return $this->json(
             $transportsRepository->findAll(),
             // HTTP Status code
@@ -200,11 +205,13 @@ class ApiController extends AbstractController
     /**
     * @Route("/api/user/form", name="api_user_form", methods={"POST"})
     */
-    public function createUser(EntityManagerInterface $entityManager, Request $request, SerializerInterface $serializerInterface,ValidatorInterface $validator): Response
+    public function createUser(EntityManagerInterface $entityManager, Request $request, SerializerInterface $serializerInterface,ValidatorInterface $validator, UserPasswordHasherInterface $encoder): Response
     {
          $data = $request->getContent();
          try {
-            $newUser = $serializerInterface->deserialize($data, Users::class, 'json');
+            $newUser = $serializerInterface->deserialize($data, User::class, 'json');
+            $hashedPassword = $encoder->hashPassword($newUser, $newUser->getPassword());
+            $newUser->setPassword($hashedPassword);
          } catch (Exception $e) {
              return new JsonResponse("Un ou plusieurs champ(s) manquant!", Response::HTTP_UNPROCESSABLE_ENTITY);
          }
@@ -236,9 +243,12 @@ class ApiController extends AbstractController
     public function loginUser(Request $request, SerializerInterface $serializerInterface, UserRepository $userRepository)
     {
         $data = $request->getContent();
-
+        // dd($request);
+        //$token = $request->headers->get('authorization');
+        //dd($token);
         $userPost = $serializerInterface->deserialize($data, User::class, 'json');
-        // dd($user);
+        // dd($userPost);
+
        
         $user = $userRepository->findByEmail( $userPost->getEmail());
         // dd($userPost->getPassword());
@@ -247,8 +257,12 @@ class ApiController extends AbstractController
         // dd($password);
         //if ($user !== NULL && $password !== NULL){ 
          if ((count($user) > 0) && (password_verify($userPost->getPassword(), $user[0]->getPassword()))){
+
+            //$jsonTest = array('username' => $user[0]->getFirstName(), 'token' => $token);
+            
             return $this->json(
                 $user,
+                //$jsonTest,
                 200,
                 [],
                 ['groups' => ['show_username']]
@@ -256,6 +270,96 @@ class ApiController extends AbstractController
         }
         
         return new JsonResponse("email et/ou mot de passe incorrect", 401);
+
+    }
+
+    /**
+    * @Route("/api/user/favoris", name="api_user_favoris", methods={"POST"})
+    */
+    public function favorite(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, $user): Response
+    {
+        $jsonRecu = $request->getContent();
+
+        $data = json_decode($jsonRecu, true);
+        dd($data);
+ 
+         // Tableau des id destinations
+         $destinationArray=[];
+         if (array_key_exists('favorites', $data)) {
+             $arraySelectedDestinations = $data['favorites'];
+             
+             foreach($arraySelectedDestinations as $value) {
+             $destinationArray[] = $value['id'];
+             }
+         }
+
+        // Tableau du token utilisateur
+        $userArray=[];
+        if (array_key_exists('token', $data)) {
+            $arraySelectedUser = $data['token'];
+            
+            foreach($arraySelectedUser as $value) {
+            $userArray[] = $value['id'];
+            }
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        // We send a a JsonResponse
+        return $this->json(
+            $userRepository->addDestination($userArray, $destinationArray),
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_favorite']]
+        );
+
+    }
+
+    /**
+    * @Route("/api/user/favoris/list", name="api_user_favoris", methods={"GET"})
+    */
+    public function favoriteList(Request $request, UserRepository $userRepository, DestinationsRepository $destinationsRepository ,$id): Response
+    {
+        $data = $request->getContent();
+
+        // We send a a JsonResponse
+        return $this->json(
+            $userFavorite,
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_favorite']]
+        );
+
+    }
+
+    /**
+    * @Route("/user/resetpassword", name="api_user_resetpassword", methods={"GET"})
+    */
+
+    /**
+    * @Route("/api/user/auth", name="api_user_auth", methods={"GET"})
+    */
+    public function authUser(Request $request, $token): Response
+    {
+        $data = $request->getContent();
+        dd($data);
+        // We send a a JsonResponse
+        return $this->json(
+            $token,
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_user']]
+        );
 
     }
 
