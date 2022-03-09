@@ -20,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"show_user"})
+     * @Groups({"show_favorite"})
      */
     private $id;
 
@@ -31,21 +32,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"show_user"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups({"show_user"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"show_user"})
      * @Groups({"show_username"})
+     * @Groups({"show_favorite"})
+     * @Groups({"show_user"})
      */
     private $firstname;
 
@@ -53,11 +53,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=50)
      * @Groups({"show_user"})
      * @Groups({"show_username"})
+     * @Groups({"show_favorite"})
      */
     private $lastname;
 
     /**
      * @ORM\ManyToMany(targetEntity=Destinations::class, inversedBy="users")
+     * @Groups({"list_favorite"})
      */
     private $destination;
 

@@ -184,25 +184,6 @@ class ApiController extends AbstractController
     }
 
     /**
-    * @Route("/api/user/{id}", name="api_user", methods={"GET"})
-    */
-    public function showUser(UserRepository $userRepository, $id): Response
-    {
-
-        // We send a a JsonResponse
-        return $this->json(
-            $userRepository->find($id),
-            // HTTP Status code
-            200,
-            // HTTP headers, here none
-            [],
-            // Group of properties to serialize
-            ['groups'=> ['show_user']]
-        );
-
-    }
-
-    /**
     * @Route("/api/user/form", name="api_user_form", methods={"POST"})
     */
     public function createUser(EntityManagerInterface $entityManager, Request $request, SerializerInterface $serializerInterface,ValidatorInterface $validator, UserPasswordHasherInterface $encoder): Response
@@ -276,39 +257,25 @@ class ApiController extends AbstractController
     /**
     * @Route("/api/user/favoris", name="api_user_favoris", methods={"POST"})
     */
-    public function favorite(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, $user): Response
+    public function favorite(Request $request, DestinationsRepository $destinationsRepository, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+        
         $jsonRecu = $request->getContent();
-
         $data = json_decode($jsonRecu, true);
-        dd($data);
- 
-         // Tableau des id destinations
-         $destinationArray=[];
-         if (array_key_exists('favorites', $data)) {
-             $arraySelectedDestinations = $data['favorites'];
-             
-             foreach($arraySelectedDestinations as $value) {
-             $destinationArray[] = $value['id'];
-             }
-         }
+        $id = $data['destination'];
 
-        // Tableau du token utilisateur
-        $userArray=[];
-        if (array_key_exists('token', $data)) {
-            $arraySelectedUser = $data['token'];
-            
-            foreach($arraySelectedUser as $value) {
-            $userArray[] = $value['id'];
-            }
-        }
-
+        // dd($id);
+        $destination = $destinationsRepository->findOneById($id);
+        // dd($destination);
+        $user->addDestination($destination);
+        
         $entityManager->persist($user);
         $entityManager->flush();
 
         // We send a a JsonResponse
         return $this->json(
-            $userRepository->addDestination($userArray, $destinationArray),
+            $user,
             // HTTP Status code
             200,
             // HTTP headers, here none
@@ -320,22 +287,24 @@ class ApiController extends AbstractController
     }
 
     /**
-    * @Route("/api/user/favoris/list", name="api_user_favoris", methods={"GET"})
+    * @Route("/api/user/favoris/list", name="api_userfavoris_list", methods={"GET"})
     */
-    public function favoriteList(Request $request, UserRepository $userRepository, DestinationsRepository $destinationsRepository ,$id): Response
+    public function favoriteList()
     {
-        $data = $request->getContent();
+        $user = $this->getUser();
 
-        // We send a a JsonResponse
-        return $this->json(
-            $userFavorite,
-            // HTTP Status code
-            200,
-            // HTTP headers, here none
-            [],
-            // Group of properties to serialize
-            ['groups'=> ['show_favorite']]
-        );
+        if($user){
+        
+            return $this->json(
+                $user,
+                200,
+                [],
+                // Group of properties to serialize
+                ['groups'=> ['list_favorite']]
+            );
+        } else {
+            return new JsonResponse("Pas de liste des favoris!", 404);
+        }
 
     }
 
@@ -343,24 +312,27 @@ class ApiController extends AbstractController
     * @Route("/user/resetpassword", name="api_user_resetpassword", methods={"GET"})
     */
 
+    
     /**
-    * @Route("/api/user/auth", name="api_user_auth", methods={"GET"})
-    */
-    public function authUser(Request $request, $token): Response
+     * @Route("/api/user/profile", name="api_user_profile", methods={"GET"})
+     */
+    public function profile()
     {
-        $data = $request->getContent();
-        dd($data);
-        // We send a a JsonResponse
-        return $this->json(
-            $token,
-            // HTTP Status code
-            200,
-            // HTTP headers, here none
-            [],
-            // Group of properties to serialize
-            ['groups'=> ['show_user']]
-        );
+        $user = $this->getUser();
 
+        if($user){
+        
+            return $this->json(
+                $user,
+                200,
+                [],
+                // Group of properties to serialize
+                ['groups'=> ['show_user']]
+            );
+        } else {
+            return new JsonResponse("marche pas!", 404);
+        }
+       
     }
 
 

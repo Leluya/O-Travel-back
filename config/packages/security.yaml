@@ -54,10 +54,9 @@ security:
         - { path: ^/api/transports,       roles: PUBLIC_ACCESS }
         - { path: ^/api/seasons,       roles: PUBLIC_ACCESS }
         - { path: ^/api/landscapes,       roles: PUBLIC_ACCESS }
-        - { path: ^/api/user/\d+, roles: ROLE_ADMIN }
         - { path: ^/api/user/form,       roles: PUBLIC_ACCESS, methods: [POST] }
         - { path: ^/api/user/login,       roles: PUBLIC_ACCESS }
-
+        - { path: ^/api/user/profile,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

@@ -19,6 +19,8 @@ class Destinations
      * @ORM\Column(type="integer")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
+     * @Groups({"list_favorite"})
      */
     private $id;
 
@@ -26,6 +28,9 @@ class Destinations
      * @ORM\Column(type="string", length=65)
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
+     * @Groups({"list_favorite"})
+     * @Groups({"list_favorite"})
      */
     private $state;
 
@@ -33,6 +38,8 @@ class Destinations
      * @ORM\Column(type="string", length=65)
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
+     * @Groups({"list_favorite"})
      */
     private $surname;
 
@@ -40,6 +47,8 @@ class Destinations
      * @ORM\Column(type="text")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
+     * @Groups({"list_favorite"})
      */
     private $picture;
 
@@ -47,12 +56,15 @@ class Destinations
      * @ORM\Column(type="text")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $summary;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
+     * @Groups({"list_favorite"})
      */
     private $extract;
 
@@ -60,6 +72,7 @@ class Destinations
      * @ORM\Column(type="text")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $pros;
 
@@ -77,12 +90,14 @@ class Destinations
      * @ORM\Column(type="integer")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $price_per_night;
 
     /**
      * @ORM\ManyToMany(targetEntity=Landscapes::class, inversedBy="destinations")
      * @Groups({"list_destination"})
+     * @Groups({"show_favorite"})
      */
     private $landscape;
 
@@ -90,6 +105,7 @@ class Destinations
      * @ORM\ManyToMany(targetEntity=Seasons::class, inversedBy="destinations")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $season;
 
@@ -97,6 +113,7 @@ class Destinations
      * @ORM\ManyToMany(targetEntity=Transports::class, inversedBy="destinations")
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $transport;
 
@@ -131,6 +148,7 @@ class Destinations
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $picture3;
 
@@ -138,6 +156,7 @@ class Destinations
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $picture4;
 
@@ -145,11 +164,13 @@ class Destinations
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"list_destination"})
      * @Groups({"show_destination"})
+     * @Groups({"show_favorite"})
      */
     private $picture5;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="destination")
+     * @Groups({"show_favorite"})
      */
     private $users;
 
