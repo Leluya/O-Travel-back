@@ -287,6 +287,38 @@ class ApiController extends AbstractController
     }
 
     /**
+    * @Route("/api/remove/favoris", name="api_remove_favoris", methods={"POST"})
+    */
+    public function removeFavorite(Request $request, DestinationsRepository $destinationsRepository, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        
+        $jsonRecu = $request->getContent();
+        $data = json_decode($jsonRecu, true);
+        $id = $data['destination'];
+
+        // dd($id);
+        $destination = $destinationsRepository->findOneById($id);
+        // dd($destination);
+        $user->removeDestination($destination);
+        
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        // We send a a JsonResponse
+        return $this->json(
+            $user,
+            // HTTP Status code
+            200,
+            // HTTP headers, here none
+            [],
+            // Group of properties to serialize
+            ['groups'=> ['show_favorite']]
+        );
+
+    }
+
+    /**
     * @Route("/api/user/favoris/list", name="api_userfavoris_list", methods={"GET"})
     */
     public function favoriteList()
@@ -309,11 +341,6 @@ class ApiController extends AbstractController
     }
 
     /**
-    * @Route("/user/resetpassword", name="api_user_resetpassword", methods={"GET"})
-    */
-
-    
-    /**
      * @Route("/api/user/profile", name="api_user_profile", methods={"GET"})
      */
     public function profile()
@@ -331,6 +358,32 @@ class ApiController extends AbstractController
             );
         } else {
             return new JsonResponse("marche pas!", 404);
+        }
+       
+    }
+
+     /**
+     * @Route("/api/user/remove/profile", name="api_user_remove_profile", methods={"GET"})
+     */
+    public function removeProfile(EntityManagerInterface $entityManager)
+    {
+        $user = $this->getUser();
+
+        if($user){
+            $entityManager->remove($user);
+        
+            //$entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->json(
+                $user,
+                200,
+                [],
+                // Group of properties to serialize
+                ['groups'=> ['show_user']]
+            );
+        } else {
+            return new JsonResponse("suppression profil marche pas!", 404);
         }
        
     }
