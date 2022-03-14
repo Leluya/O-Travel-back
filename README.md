@@ -126,7 +126,7 @@ bin/console make:auth
  - Review & adapt the login template: templates/security/login.html.twig.
 ```
 
-We create a user in our databe, but before to save the suer, we use the command: ``` bin/console security:has-password``` to have the password hased. Now, we cans save the user.  
+We create a user in our databe, but before to save the user, we use the command: ``` bin/console security:has-password``` to have the password hased. Now, we cans save the user.  
 
 **API securisation**
 
