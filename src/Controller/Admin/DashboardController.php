@@ -21,6 +21,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
+        // return parent::index();
     }
 
     public function configureDashboard(): Dashboard
@@ -29,9 +30,6 @@ class DashboardController extends AbstractDashboardController
         
             // you can include HTML contents too (e.g. to link to an image)
             ->setTitle('☀️\'Travel Back')
-
-            // the path defined in this method is passed to the Twig asset() function
-            ->setFaviconPath('favicon.svg')
 
             // the domain used by default is 'messages'
             ->setTranslationDomain('my-custom-domain')

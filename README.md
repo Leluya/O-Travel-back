@@ -169,10 +169,18 @@ We add the following script for the file lexit_jwt_authentication.yaml:
 ```token_ttl: 36000 # in seconds, default is 3600```, we add time to use the api session with the token.  
 
 
-## Reset paswword
+## Install of the backoffice of Symfony  
 
-We use the following command:  
-```composer require symfonycasts/reset-password-bundle symfony/mailer```  
+Download the repositories "projet-23-o-travel-back" with the ssh link.  
 
-We can create the return after succesful reset password and give the eamil thaht send the request with the following command:  
-```bin/console make:reset-password```  
+Use the commmand: ```composer install```  
+Create a file: .env.local, add the line : DATABASE_URL="mysql://otravel:otravel@127.0.0.1:3306/otravel?serverVersion=mariadb-10.5.8"
+Check that you ahve in the file .env, the following line not comment: DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=mariadb-10.5.8"  
+Use the command: ```bin/console d:d:c```  
+If it's not workin use the command: ```bin/console d:s:c```  
+
+Now, that the dabase was create you can fulfil the database with fixture, use the command: ```bin/console d:f:l``` and say Yes!  
+
+Before you can use the backoffice, you need to create an admin user, make it your database (MariaDb), but before you save it, you need to has the password with the following command: ``` bin/console security:has-password```, copy the result and add it in the database. Add a role like this ["ROLE_ADMIN"].  
+
+Now you can start the backoffice, go the road "/admin", you will go to the login page and you will launch the backoffice.  
