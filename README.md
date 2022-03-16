@@ -184,3 +184,4 @@ Now, that the dabase was create you can fulfil the database with fixture, use th
 Before you can use the backoffice, you need to create an admin user, make it your database (MariaDb), but before you save it, you need to has the password with the following command: ``` bin/console security:has-password```, copy the result and add it in the database. Add a role like this ["ROLE_ADMIN"].  
 
 Now you can start the backoffice, go the road "/admin", you will go to the login page and you will launch the backoffice.  
+Launch local server with **php -S 0.0.0.0:8080 -t public**  
